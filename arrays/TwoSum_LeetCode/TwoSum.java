@@ -8,18 +8,26 @@
 
 import java.util.HashMap;
 
-public class TwoSum {
-    public static int[] twoSum(int[] nums, int target) {
+import java.util.HashMap;
+
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
+        
+        // Fill the map with value -> index
         for (int i = 0; i < nums.length; i++) {
-            int diff = target - nums[i];
-            if (map.containsKey(diff)) {
-                return new int[] { map.get(diff), i };
-            }
             map.put(nums[i], i);
         }
-        return new int[] {};
+
+        for (int i = 0; i < nums.length; i++) {
+            int diff = target - nums[i];
+            if (map.containsKey(diff) && map.get(diff) != i) {
+                return new int[] {i, map.get(diff)};
+            }
+        }
+        return new int[0];
     }
+}
 
     public static void main(String[] args) {
         int[] nums = {2, 7, 11, 15};
